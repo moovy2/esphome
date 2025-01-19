@@ -40,6 +40,14 @@ enum BedjetHeatMode {
   HEAT_MODE_EXTENDED,
 };
 
+// Which temperature to use as the climate entity's current temperature reading
+enum BedjetTemperatureSource {
+  // Use the temperature of the air the BedJet is putting out
+  TEMPERATURE_SOURCE_OUTLET,
+  // Use the ambient temperature of the room the BedJet is in
+  TEMPERATURE_SOURCE_AMBIENT
+};
+
 enum BedjetButton : uint8_t {
   /// Turn BedJet off
   BTN_OFF = 0x1,
@@ -89,8 +97,10 @@ enum BedjetCommand : uint8_t {
         "85%", "90%", "95%", "100%" \
   }
 
-static const char *const BEDJET_FAN_STEP_NAMES[20] = BEDJET_FAN_STEP_NAMES_;
-static const std::string BEDJET_FAN_STEP_NAME_STRINGS[20] = BEDJET_FAN_STEP_NAMES_;
+static const uint8_t BEDJET_FAN_SPEED_COUNT = 20;
+
+static const char *const BEDJET_FAN_STEP_NAMES[BEDJET_FAN_SPEED_COUNT] = BEDJET_FAN_STEP_NAMES_;
+static const std::string BEDJET_FAN_STEP_NAME_STRINGS[BEDJET_FAN_SPEED_COUNT] = BEDJET_FAN_STEP_NAMES_;
 static const std::set<std::string> BEDJET_FAN_STEP_NAMES_SET BEDJET_FAN_STEP_NAMES_;
 
 }  // namespace bedjet
